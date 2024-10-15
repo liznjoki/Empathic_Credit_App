@@ -1,0 +1,201 @@
+
+QLite version 3.46.1 2024-08-13 09:16:08 (UTF-16 console I/O)
+Enter ".help" for usage hints.
+Connected to a transient in-memory database.
+Use ".open FILENAME" to reopen on a persistent database.
+
+--Open the database file
+sqlite> .open "case database.db"
+
+sqlite> --Understand the structure of the tables
+sqlite> PRAGMA table_info(loans)
+   ...> ;
+0|loan_id|INTEGER|0||1
+1|user_id|INTEGER|0||0
+2|loan_amount|INTEGER|0||0
+3|total_amount|REAL|0||0
+4|issue_date|TIMESTAMP|0||0
+5|due_date|TIMESTAMP|0||0
+6|paid_date|TIMESTAMP|0||0
+7|installment_amount|REAL|0||0
+8|loan_amount_paid|REAL|0||0
+9|status|TEXT|0||0
+sqlite> PRAGMA table_info(emotional_data);
+0|user_id|INTEGER|0||0
+1|timestamp|TIMESTAMP|0||0
+2|intensity|REAL|0||0
+3|time_of_day|TEXT|0||0
+4|primary_emotion|TEXT|0||0
+5|relationship|TEXT|0||0
+6|situation|TEXT|0||0
+7|location|TEXT|0||0
+8|weather|TEXT|0||0
+9|physical_state|TEXT|0||0
+10|preceding_event|TEXT|0||0
+11|grade|REAL|0||0
+sqlite> PRAGMA table_info(users);
+0|user_id|INTEGER|0||1
+1|score|REAL|0||0
+2|approved_date|TEXT|0||0
+3|denied_date|TEXT|0||0
+4|credit_limit|INTEGER|0||0
+5|interest_rate|REAL|0||0
+6|loan_term|INTEGER|0||0
+
+
+sqlite> --Explore first ten rows of each table
+sqlite> SELECT * FROM loans LIMIT 10;
+1|1|29955|47928.0|2021-06-14|2022-06-09|2021-10-05|3994.0|35596.53|paid
+2|1|15473|24756.8|2022-12-06|2023-12-01|2023-08-17|2063.07|22023.24|paid
+3|1|15781|25249.6|2025-04-24|2026-04-19|2025-04-28|2104.13|15886.21|paid
+4|3|8715|13421.1|2024-10-28|2025-04-26||2236.85|0.0|late
+5|4|1721|2288.93|2021-03-09|2021-06-07|2021-03-29|762.98|1847.21|paid
+6|4|1153|1533.49|2022-08-01|2022-10-30|2022-08-07|511.16|1178.37|paid
+7|4|1755|2334.15|2024-02-22|2024-05-22|2024-05-08|778.05|2244.06|paid
+8|4|1794|2386.02|2025-02-16|2025-05-17|2025-03-24|795.34|2030.81|paid
+9|5|1583|2105.39|2021-11-24|2022-02-22|2022-01-28|701.8|1960.28|paid
+10|5|1206|1603.98|2022-08-21|2022-11-19|2022-11-18|534.66|1599.56|paid
+
+sqlite> --Explore first ten rows of emotional data
+sqlite> SELECT * FROM emotional_data LIMIT 10;
+1|2019-04-07 22:50:39|4.0|night|anticipation||cooking||cloudy|energetic|criticism|3.72
+1|2019-04-07 14:02:53|9.0|afternoon|boredom|parent|volunteering|home|snowy||good news|4.79
+1|2019-04-07 03:16:21|7.0|night|shame|neighbor|in meeting|work|sunny|tired||2.94
+1|2019-04-08 17:10:35|5.0|evening|joy|stranger|argument||windy|rested|compliment|5.35
+1|2019-04-08 16:12:02|1.0|afternoon|joy|child|clothes shopping||sunny||surprise|2.97
+1|2019-04-10 07:21:39|7.0|morning|relief|spouse||work|||criticism|5.5
+1|2019-04-13 17:51:15|5.0|evening|trust|spouse|working|||rested|good news|5.18
+1|2019-04-13 07:10:17|8.0|morning|anticipation|partner|dining out|nature|sunny|injured|neutral|6.99
+1|2019-04-13 20:57:31|3.0|evening|trust|crush|meditating||cloudy|rested|achievement|3.68
+1|2019-04-15 17:12:03|8.0|evening|anticipation||presentation|public space|cloudy||good news|6.57
+
+--Explore first ten rows of users
+sqlite> SELECT * FROM users LIMIT 10;
+1|5.69|2020-05-21||32700|0.05|12
+2||||||
+3|5.61|2023-12-04|2025-04-26|9500|0.09|6
+4|5.64|2020-05-14||1800|0.11|3
+5|5.64|2021-04-29||1700|0.11|3
+6|5.79|2021-04-03||20000|0.05|24
+7|5.67|2021-12-24||2600|0.11|3
+8|5.69|2020-01-27||24400|0.02|24
+9|5.74|2020-01-27||10300|0.02|24
+10|5.73|2021-03-21||48200|0.07|24
+
+
+sqlite> -- Rows of data are in the three tables
+sqlite> SELECT COUNT(*) AS count, 'loans' AS table_name FROM loans
+   ...> UNION ALL
+   ...> SELECT COUNT(*) AS count, 'users' AS table_name FROM users
+   ...> UNION ALL
+   ...> SELECT COUNT(*) AS count, 'emotional_data' AS table_name FROM emotional_data;
+1188|loans
+734|users
+2440948|emotional_data
+sqlite> --Identify any missing data or Null Values in Users Table as the fact table
+
+--Identify any null values in the loans table
+sqlite> SELECT
+   ...>     COUNT(CASE WHEN loan_id IS NULL THEN 1 END) AS loan_id_nulls,
+   ...>     COUNT(CASE WHEN user_id IS NULL THEN 1 END) AS user_id_nulls,
+   ...>     COUNT(CASE WHEN loan_amount IS NULL THEN 1 END) AS loan_amount_nulls,
+   ...>     COUNT(CASE WHEN total_amount IS NULL THEN 1 END) AS total_amount_nulls,
+   ...>     COUNT(CASE WHEN issue_date IS NULL THEN 1 END) AS issue_date_nulls,
+   ...>     COUNT(CASE WHEN due_date IS NULL THEN 1 END) AS due_date_nulls,
+   ...>     COUNT(CASE WHEN paid_date IS NULL THEN 1 END) AS paid_date_nulls,
+   ...>     COUNT(CASE WHEN installment_amount IS NULL THEN 1 END) AS installment_amount_nulls,
+   ...>     COUNT(CASE WHEN loan_amount_paid IS NULL THEN 1 END) AS loan_amount_paid_nulls,
+   ...>     COUNT(CASE WHEN status IS NULL THEN 1 END) AS status_nulls
+   ...> FROM loans;
+0|0|0|0|0|0|241|0|0|0
+
+-- identify any nulls in the emotional_data table
+sqlite> SELECT
+   ...>     COUNT(CASE WHEN user_id IS NULL THEN 1 END) AS user_id_nulls,
+   ...>     COUNT(CASE WHEN timestamp IS NULL THEN 1 END) AS timestamp_nulls,
+   ...>     COUNT(CASE WHEN intensity IS NULL THEN 1 END) AS intensity_nulls,
+   ...>     COUNT(CASE WHEN time_of_day IS NULL THEN 1 END) AS time_of_day_nulls,
+   ...>     COUNT(CASE WHEN primary_emotion IS NULL THEN 1 END) AS primary_emotion_nulls,
+   ...>     COUNT(CASE WHEN relationship IS NULL THEN 1 END) AS relationship_nulls,
+   ...>     COUNT(CASE WHEN situation IS NULL THEN 1 END) AS situation_nulls,
+   ...>     COUNT(CASE WHEN location IS NULL THEN 1 END) AS location_nulls,
+   ...>     COUNT(CASE WHEN weather IS NULL THEN 1 END) AS weather_nulls,
+   ...>     COUNT(CASE WHEN physical_state IS NULL THEN 1 END) AS physical_state_nulls,
+   ...>     COUNT(CASE WHEN preceding_event IS NULL THEN 1 END) AS preceding_event_nulls,
+   ...>     COUNT(CASE WHEN grade IS NULL THEN 1 END) AS grade_nulls
+   ...> FROM emotional_data;
+0|0|0|0|0|561367|560784|560021|559959|562260|561935|0
+
+-- Identify nulls in users table
+SELECT
+   ...>     SUM(CASE WHEN score IS NULL THEN 1 ELSE 0 END) AS null_score,
+   ...>     SUM(CASE WHEN approved_date IS NULL THEN 1 ELSE 0 END) AS null_approved_date,
+   ...>     SUM(CASE WHEN denied_date IS NULL THEN 1 ELSE 0 END) AS null_denied_date,
+   ...>     SUM(CASE WHEN credit_limit IS NULL THEN 1 ELSE 0 END) AS null_credit_limit,
+   ...>     SUM(CASE WHEN interest_rate IS NULL THEN 1 ELSE 0 END) AS null_interest_rate,
+   ...>     SUM(CASE WHEN loan_term IS NULL THEN 1 ELSE 0 END) AS null_loan_term
+   ...> FROM users;
+67|67|556|67|67|67
+
+-- Create a table that removes all the null values that are across multiple rows in users table
+sqlite> CREATE VIEW users_cleaned AS
+   ...> SELECT *
+   ...> FROM users
+   ...> WHERE score IS NOT NULL
+   ...> and approved_date IS NOT NULL
+   ...> AND credit_limit IS NOT NULL
+   ...> AND interest_rate IS NOT NULL
+   ...> AND loan_term IS NOT NULL;
+
+
+
+-- Filter loans and emotional data to only have users ids that have complete information in the users table
+
+-- match only loans that have information in the users table
+sqlite> CREATE VIEW loans_cleaned AS
+   ...> SELECT *
+   ...> FROM loans
+   ...> WHERE user_id IN (SELECT user_id FROM users_clean);
+
+--check the number of rows from loans table
+sqlite> SELECT COUNT(*) FROM loans_cleaned;
+1188
+
+
+sqlite> --Check for data entry errors in loans table
+sqlite> SELECT COUNT(*)
+   ...> FROM loans
+   ...> WHERE loan_amount_paid> loan_amount;
+1188
+
+-- Filter emotional data for users that have user ids that are complete and create a table
+CREATE VIEW emotional_data_clean AS
+   ...> SELECT *
+   ...> FROM emotional_data
+   ...> WHERE user_id IN (SELECT user_id FROM users_cleaned);
+
+-- Count the number of rows in emotional data
+sqlite> SELECT Count(*) FROM emotional_data_clean;
+2217966
+
+-- Save the users_cleaned output in csv for further analysis
+
+sqlite> .mode csv
+sqlite> .headers on
+sqlite> .output user_cleaned_data.csv
+sqlite> SELECT * FROM users_clean;
+sqlite> .output stdout
+
+
+-- Save the loans_cleaned output in csv for further analysis
+
+sqlite> .output loans_cleaned.csv
+sqlite> SELECT * FROM loans_cleaned;
+sqlite> .output stdout
+
+
+-- Save the emotional data cleaned into csv for further analysis
+sqlite> .output emotional_data_cleaned.csv
+sqlite> SELECT * FROM emotional_data_clean;
+sqlite> .output stdout
+
