@@ -15,8 +15,8 @@ To get started, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/liznjoki/Emphatic_Credit_App.git
-   cd Emphatic_Credit_App
+   git clone https://github.com/liznjoki/Empathic_Credit_App.git
+   cd Empathic_Credit_App
 
 2. **Unzip the Data Folder:**
    Unzip the data.zip in the data directory and save as 'data'.
