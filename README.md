@@ -1,4 +1,4 @@
-# Emphatic Credit Insights Dashboard
+# Empathic Credit Insights Dashboard
 
 
 ## Overview
