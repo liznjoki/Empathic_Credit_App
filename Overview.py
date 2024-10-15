@@ -108,7 +108,6 @@ class Overview:
                     df[column] = pd.to_datetime(df[column])
             return df
 
-        convert_to_timestamp(df_loans, "issue_date", "due_date", "paid_date")
 
         #Building the Dashboard
         st.header("Emphathic Credit System Dashboard", divider="rainbow")
@@ -118,6 +117,8 @@ class Overview:
         dataloader = Overview()
 
         df_users, df_loans, df_emotional_data = dataloader.read_data()
+
+
         #Get total profit
         df_loans["profit"] = df_loans["loan_amount_paid"] - df_loans["loan_amount"]
 
@@ -255,6 +256,9 @@ class Overview:
             grade=("grade", "mean"),
             intensity=("intensity", "mean")
         ).reset_index()
+        
+        #Convert the dates to timestamps
+        convert_to_timestamp(df_loans, "issue_date", "due_date", "paid_date")
 
         # create year from the date loans were issued
         df_loans["Year"] = df_loans["issue_date"].dt.year
