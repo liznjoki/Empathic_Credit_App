@@ -11,7 +11,7 @@ The **Emphatic Credit App** is an interactive dashboard desinged to enhance the 
 - **User Insights**: Offers insights into user behaviors and emotional states that affect lending decisions.
 
 ## Installation
-To get started with the Emphatic Credit System, follow these steps:
+To get started, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
@@ -26,10 +26,10 @@ To get started with the Emphatic Credit System, follow these steps:
 pip install -r requirements.txt
 
 
-4.**Run Streamlit: Start the Streamlit app by executing the following command:**
+4. **Run Streamlit: Start the Streamlit app by executing the following command:**
 
 streamlit run app.py
 
 
 
-5.**Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit System.**
+5. **Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit System.**
