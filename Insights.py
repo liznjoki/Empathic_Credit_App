@@ -460,8 +460,9 @@ class Overview:
         df_loans_merged['loan_amount_category'] = pd.cut(df_loans_merged['loan_amount'], bins=bins, labels=labels,
                                                          right=False)
 
-        #percentage of defaulters in each category
+        #filter by defaulters
         defaulters = df_loans_merged[df_loans_merged["status"] == "late"]
+        #percentage of defaulters in each category
         defaulters_per_loan_category = defaulters.groupby("loan_amount_category").size().reset_index(name="count")
 
         col1, col2 = st.columns(2)
