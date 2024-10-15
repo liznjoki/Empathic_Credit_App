@@ -27,4 +27,4 @@ To get started, follow these steps:
 4. **Run Streamlit: Start the Streamlit app by executing the following command:**
    streamlit run app.py
 
-5. **Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit Insights Dashboard.**
+5. **Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Empathic Credit Insights Dashboard.**
