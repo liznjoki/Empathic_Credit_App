@@ -1,4 +1,4 @@
-# Emphatic_Credit_Score
+# Emphatic_Credit_App
 
 
 ## Overview
