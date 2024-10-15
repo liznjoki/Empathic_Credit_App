@@ -10,28 +10,26 @@ The **Emphatic Credit App** is an interactive dashboard desinged to enhance the 
 - **Key Metrics**: Calculates metrics related to loan disbursementloan term, credit limit, and interest rate predictions.
 - **User Insights**: Offers insights into user behaviors and emotional states that affect lending decisions.
 
-
-
 ## Installation
 To get started with the Emphatic Credit System, follow these steps:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/liznjoki/Emphatic_Credit_System.git
-   cd Emphatic_Credit_System
+   git clone https://github.com/liznjoki/Emphatic_Credit_App.git
+   cd Emphatic_Credit_App
+
+2. **Unzip the Data Folder:**
+   Unzip the data.zip in the data directory and save as 'data'.
 
    
-2. **Install Dependencies: Make sure you have Python installed, then install the required packages:**
+3. **Install Dependencies:**
 pip install -r requirements.txt
 
 
-3.**Run Streamlit: Start the Streamlit app by executing the following command:**
+4.**Run Streamlit: Start the Streamlit app by executing the following command:**
 
 streamlit run app.py
 
-4.**Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit System.**
 
 
-
-
-
+5.**Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit System.**
