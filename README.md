@@ -2,12 +2,12 @@
 
 
 ## Overview
-The **Emphatic Credit System** is an innovative financial application algorithm designed to enhance the credit lending process by incorporating emotional and situational data. By analyzing various emotional factors and their influence on lending decisions, this analysis aims to improve the accuracy of credit assessments, optimize loan terms, and foster positive relationships between lenders and borrowers.
+The **Emphatic Credit App** is an interactive dashboard desinged to enhance the credit lending process by incorporating emotional and situational data. By analyzing various emotional factors and their influence on lending decisions, this analysis aims to improve the accuracy of credit assessments, optimize loan terms, and foster positive relationships between lenders and borrowers.
 
 ## Key Features
 - **Interactive Dashboard**: Provides an intuitive interface for users to explore financial insights and performance metrics.
 - **Emotional Analysis**: Utilizes emotional data to assess borrower behavior and predict loan repayment potential.
-- **Key Metrics**: Calculates metrics related to loan term, credit limit, and interest rate predictions.
+- **Key Metrics**: Calculates metrics related to loan disbursementloan term, credit limit, and interest rate predictions.
 - **User Insights**: Offers insights into user behaviors and emotional states that affect lending decisions.
 
 
