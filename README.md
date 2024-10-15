@@ -1,8 +1,8 @@
-# Emphatic_Credit_App
+# Emphatic Credit Insights Dashboard
 
 
 ## Overview
-The **Emphatic Credit App** is an interactive dashboard desinged to enhance the credit lending process by incorporating emotional and situational data. By analyzing various emotional factors and their influence on lending decisions, this analysis aims to improve the accuracy of credit assessments, optimize loan terms, and foster positive relationships between lenders and borrowers.
+This is an interactive dashboard desinged to enhance the credit lending process by incorporating emotional and situational data. By analyzing various emotional factors and their influence on lending decisions, this analysis aims to improve the accuracy of credit assessments, optimize loan terms, and foster positive relationships between lenders and borrowers.
 
 ## Key Features
 - **Interactive Dashboard**: Provides an intuitive interface for users to explore financial insights and performance metrics.
@@ -21,15 +21,10 @@ To get started, follow these steps:
 2. **Unzip the Data Folder:**
    Unzip the data.zip in the data directory and save as 'data'.
 
-   
 3. **Install Dependencies:**
-pip install -r requirements.txt
-
+   pip install -r requirements.txt
 
 4. **Run Streamlit: Start the Streamlit app by executing the following command:**
+   streamlit run app.py
 
-streamlit run app.py
-
-
-
-5. **Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit System.**
+5. **Access the Application: After running the command, open your web browser and go to http://localhost:8501 to view the Emphatic Credit Insights Dashboard.**
