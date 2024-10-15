@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 PARENT_DIR = Path(__file__).resolve().parent
 sys.path.insert(0,str(PARENT_DIR))
-from Overview import Overview
+from Insights import Overview
 
 # Custom CSS to increase the width of the entire page
 st.markdown(
