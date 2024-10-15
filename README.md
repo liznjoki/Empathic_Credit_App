@@ -19,7 +19,7 @@ To get started, follow these steps:
    cd Empathic_Credit_App
 
 2. **Unzip the Data Folder:**
-   Unzip the data.zip in the data directory and save as 'data'.
+   Unzip the data.zip in the data directory and save the three csv files inside the 'data' directory.
 
 3. **Install Dependencies:**
    pip install -r requirements.txt
