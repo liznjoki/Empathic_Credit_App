@@ -71,5 +71,5 @@ plt.figure(figsize=(10, 6))
 plt.barh(feature_importance_df['Feature'], feature_importance_df['Importance'])
 plt.xlabel('Importance')
 plt.title('Feature Importance')
-#plt.show()
+plt.show()
 
